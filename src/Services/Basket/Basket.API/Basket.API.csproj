@@ -5,12 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entites\**" />
+    <Content Remove="Entites\**" />
+    <EmbeddedResource Remove="Entites\**" />
+    <None Remove="Entites\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Entites\" />
   </ItemGroup>
 
 </Project>
