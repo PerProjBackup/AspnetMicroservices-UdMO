@@ -1,4 +1,5 @@
 ﻿using Discount.Grpc.Repositories;
+using Discount.Grpc.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,7 @@ namespace Discount.Grpc
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddScoped<IDiscountRepository, DiscountRepository>();
+      services.AddAutoMapper(typeof(Startup));
       services.AddGrpc();
     }
 
@@ -33,7 +35,7 @@ namespace Discount.Grpc
 
       app.UseEndpoints(endpoints =>
       {
-        endpoints.MapGrpcService<GreeterService>();
+        endpoints.MapGrpcService<DiscountService>();
 
         endpoints.MapGet("/", async context => { await context.Response
           .WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
