@@ -21,16 +21,19 @@ namespace Ordering.API.Extensions
 
       try
       {
-        logger.LogInformation("Migrating database associated with context {DbContextName}", typeof(TContext).Name);
+        logger.LogInformation("Migrating database associated with context {DbContextName}",
+          typeof(TContext).Name);
 
         InvokeSeeder(seeder, context, services);
 
-        logger.LogInformation("Migrated database associated with context {DbContextName}", typeof(TContext).Name);
+        logger.LogInformation("Migrated database associated with context {DbContextName}",
+          typeof(TContext).Name);
       }
       catch (SqlException ex)
       {
         logger.LogError
-          (ex, "An error occured while migrating the database used on context {DbContextName}", typeof(TContext).Name);
+          (ex, "An error occured while migrating the database used on context {DbContextName}",
+          typeof(TContext).Name);
 
         if (retryForAvailability < 50)
         {
@@ -42,8 +45,8 @@ namespace Ordering.API.Extensions
       return host;
     }
 
-    private static void InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seeder, TContext context,
-      IServiceProvider services) where TContext : DbContext
+    private static void InvokeSeeder<TContext>(Action<TContext, IServiceProvider> seeder,
+      TContext context, IServiceProvider services) where TContext : DbContext
     {
       context.Database.Migrate();
       seeder(context, services);
