@@ -53,7 +53,6 @@ namespace Basket.API.Controllers
         var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
         item.Price -= coupon.Amount;
       }
-
       return Ok(await _repository.UpdateBasket(basket));
     }
 
