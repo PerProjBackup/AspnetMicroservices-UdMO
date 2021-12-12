@@ -40,7 +40,14 @@
 			"DownstreamScheme": "http",
 			"DownstreamHostAndPorts": [	{ "Host": "localhost", "Port": 8001	}	],
 			"UpstreamPathTemplate": "/Basket/Checkout",
-			"UpstreamHttpMethod": [ "POST" ]
+			"UpstreamHttpMethod": [ "POST" ],
+			"RateLimitOptions": {
+				"ClientWhitelist": [],
+				"EnableRateLimiting": true,
+				"Period": "3s",
+				"PeriodTimespan": 1,
+				"Limit": 1
+				}
 		},
 		{ // Discount
 			"DownstreamPathTemplate": "/api/v1/Discount/{productName}",
