@@ -1,9 +1,7 @@
-﻿using Shopping.Aggregator.Models;
+﻿using Shopping.Aggregator.Extensions;
+using Shopping.Aggregator.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Shopping.Aggregator.Services
@@ -17,9 +15,11 @@ namespace Shopping.Aggregator.Services
       _client = client ?? throw new ArgumentNullException(nameof(client));
     }
 
-    public Task<BasketModel> GetBasket(string userName)
+    public async Task<BasketModel> GetBasket(string userName)
     {
-      throw new NotImplementedException();
+      HttpResponseMessage response = await _client
+        .GetAsync($"/api/v1/Basket/{userName}");
+      return await response.ReadContentAs<BasketModel>();
     }
   }
 }
