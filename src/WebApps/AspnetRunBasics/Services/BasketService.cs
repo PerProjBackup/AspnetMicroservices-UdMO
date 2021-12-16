@@ -22,7 +22,7 @@ namespace AspnetRunBasics.Services
       return await response.ReadContentAs<BasketModel>();
     }
 
-    public async Task<BasketModel> UodateBasket(BasketModel model)
+    public async Task<BasketModel> UpdateBasket(BasketModel model)
     {
       HttpResponseMessage response = await _client
         .PostAsJson($"/Basket", model);

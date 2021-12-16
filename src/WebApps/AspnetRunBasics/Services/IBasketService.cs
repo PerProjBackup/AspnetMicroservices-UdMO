@@ -6,7 +6,7 @@ namespace AspnetRunBasics.Services
   public interface IBasketService
   {
     Task<BasketModel> GetBasket(string userName);
-    Task<BasketModel> UodateBasket(BasketModel model);
+    Task<BasketModel> UpdateBasket(BasketModel model);
     Task CheckoutBasket(BasketCheckoutModel model);
   }
 }
